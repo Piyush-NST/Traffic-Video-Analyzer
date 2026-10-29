@@ -1,0 +1,33 @@
+# Short end-to-end smoke-test configuration. Production settings are in config.yaml.
+model:
+  weights: yolov8n.pt
+  confidence_threshold: 0.35
+  iou_threshold: 0.45
+  vehicle_classes: [car, motorcycle, bus, truck]
+tracker:
+  track_activation_threshold: 0.25
+  lost_track_buffer: 30
+  minimum_matching_threshold: 0.8
+counting:
+  line_start: [640, 540]
+  line_end: [1280, 540]
+  in_direction: positive_to_negative
+  min_crossing_distance_px: 8
+calibration:
+  pixels_per_meter: 20.0
+  speed_smoothing_frames: 8
+  max_speed_kmh: 180.0
+congestion:
+  zone_polygon: [[500, 350], [1500, 350], [1700, 900], [300, 900]]
+  vehicle_threshold: 8
+output:
+  codec: mp4v
+  reencode_h264: true
+  ffmpeg_binary: ffmpeg
+  overlay_font_scale: 0.6
+  overlay_thickness: 2
+  max_frames: 8
+ui:
+  confidence_min: 0.05
+  confidence_max: 0.95
+  confidence_step: 0.05
